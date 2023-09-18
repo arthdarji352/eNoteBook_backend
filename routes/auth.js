@@ -43,7 +43,7 @@ router.post("/signup", async (req, res) => {
     });
 
     await newUser.save();
-    console.log(newUser);
+    // console.log(newUser);
     res.status(201).json({ success: "Signup Successfully" });
   } catch (error) {
     console.log(error);
@@ -70,7 +70,7 @@ router.post("/login", async (req, res) => {
     // Find Unique User with email
     const user = await User.findOne({ email });
 
-    console.log(user);
+    // console.log(user);
 
     // if user not exists with that email
     if (!user) {
@@ -79,7 +79,7 @@ router.post("/login", async (req, res) => {
 
     // matching user password to hash password with bcrypt.compare()
     const doMatch = await bcrypt.compare(password, user.password);
-    console.log(doMatch);
+    // console.log(doMatch);
 
     // if match password then generate token
     if (doMatch) {
@@ -97,10 +97,11 @@ router.post("/login", async (req, res) => {
   }
 });
 
+//get user
 router.get("/getuser", fetchUser, async (req, res) => {
   try {
     const userId = req.userId;
-    console.log(userId);
+    // console.log(userId);
     const user = await User.findById(userId).select("-password");
     res.send(user);
   } catch (error) {
