@@ -11,6 +11,10 @@ const port = 4000;
 //middleware
 app.use(cors());
 app.use(express.json());
+
+app.get("/", (req, res) => {
+  res.json("eNoteBook Backend api");
+});
 // Available routes
 app.use("/api/auth", auth);
 app.use("/api/notes", Notes);
