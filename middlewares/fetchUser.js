@@ -1,6 +1,6 @@
 import "dotenv/config";
 import jwt from "jsonwebtoken";
-
+const JWT_SECRET = "123456";
 const fetchUser = (req, res, next) => {
   // Get the user from the jwt token and add id to req object
   const token = req.header("auth-token");
@@ -11,7 +11,7 @@ const fetchUser = (req, res, next) => {
   }
 
   try {
-    const { userId } = jwt.verify(token, process.env.JWT_SECRET);
+    const { userId } = jwt.verify(token, "" + JWT_SECRET);
     req.userId = userId;
     next();
   } catch (error) {
